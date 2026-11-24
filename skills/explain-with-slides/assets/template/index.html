@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>TITLE</title>
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css" />
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/white.css" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!--
+  Layout gallery. Each slide is one reusable layout; its notes say when to use it.
+  Copy the slides you need, replace the placeholder text, and delete the rest.
+  Section order for a paper talk: opening -> 1 problem/background -> 2 method
+  -> 3 evidence -> 4 discussion -> backup.
+-->
+
+<!-- ============================================================ -->
+<!-- OPENING                                                       -->
+<!-- ============================================================ -->
+
+<section class="title-slide">
+  <h1>Full Title of the Paper or Topic: Subtitle if It Has One</h1>
+  <p class="authors">Author One*, Author Two*, Author Three &nbsp;·&nbsp; Affiliation</p>
+  <p class="small muted">Venue (Year) &nbsp;·&nbsp; arXiv:XXXX.XXXXX</p>
+  <p class="presenter">Presented by NAME &nbsp;·&nbsp; COURSE &nbsp;·&nbsp; DATE</p>
+  <aside class="notes">
+    Layout: title. [~20 s] Who wrote it, where it appeared, and why it matters in one sentence.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">The paper in one sentence</p>
+  <div class="box big">
+    Do <b>this one thing</b> to the familiar system, and you get <b>this benefit</b>.
+  </div>
+  <p class="big center" style="margin: 0.7em 0;">⇒ the consequence, <b>stated plainly</b>.</p>
+  <h3>Roadmap</h3>
+  <ol>
+    <li>Problem and background <span class="muted small">(~5 min)</span></li>
+    <li>Method: the core idea and how to make it work <span class="muted small">(~15 min)</span></li>
+    <li>Experiments: the key evidence <span class="muted small">(~10 min)</span></li>
+    <li>Discussion and takeaways <span class="muted small">(~5 min)</span></li>
+  </ol>
+  <aside class="notes">
+    Layout: one sentence + roadmap. [~40 s] The sentence a listener should repeat afterwards. Repeat it on the last slide.
+  </aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- 1 · PROBLEM AND BACKGROUND                                    -->
+<!-- ============================================================ -->
+
+<section>
+  <p class="kicker">1 · Problem and background</p>
+  <h2>Prior result says X — but it leaves a gap</h2>
+  <div class="timeline">
+    <div><b>Jan 2020</b><br/>Prior work A</div>
+    <div><b>May 2020</b><br/>Prior work B</div>
+    <div class="now"><b>Jan 2021</b><br/>This paper</div>
+    <div class="later"><b>2022</b><br/>Later work</div>
+  </div>
+  <div class="cols">
+    <div>
+      <h3>What prior work found</h3>
+      <ul class="small">
+        <li>Main finding, with its formula if short. For example:
+          $$L(N) \approx (N_c / N)^{0.076}$$</li>
+        <li>Second finding.</li>
+        <li>Advice that this paper builds on.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <p class="small"><b>The gap:</b> what prior work could not separate or test.</p>
+      <p class="small"><b>Hypothesis (§2):</b> "short quote from the paper."</p>
+      <p class="small">⇒ the new axis or idea, in one line.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Layout: timeline + context/gap. [~1.5 min] Check dates before saying which work came first.
+    End by stating the hypothesis; return to it in the discussion section.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">1 · Background</p>
+  <h2>Where does the key component sit?</h2>
+  <div class="cols c46">
+    <div>
+      <ul>
+        <li>The system has stages; one stage matters here.</li>
+        <li>That stage works <b>on each item independently</b>:
+          $$f(x) = \mathrm{ReLU}(x W_{\text{in}})\,W_{\text{out}}$$</li>
+        <li>Size check with named parts: $8d^2$ vs $4d^2$ → <b>2/3</b> of the block.</li>
+        <li class="fragment" data-fragment-index="1">Idea: <b>replace it</b> with the new version.</li>
+      </ul>
+    </div>
+    <div>
+<svg class="diagram" viewBox="0 0 900 420" role="img" aria-label="Baseline block versus modified block">
+  <defs>
+    <marker id="ah-t1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+  <text x="200" y="20" text-anchor="middle" class="lbl b">Baseline</text>
+  <text x="200" y="46" text-anchor="middle" class="lbl">x</text>
+  <line x1="200" y1="52" x2="200" y2="80" class="edge" marker-end="url(#ah-t1)"/>
+  <rect x="90" y="82" width="220" height="44" rx="8" class="node"/>
+  <text x="200" y="110" text-anchor="middle" class="lbl">Stage A</text>
+  <line x1="200" y1="126" x2="200" y2="146" class="edge" marker-end="url(#ah-t1)"/>
+  <rect x="90" y="148" width="220" height="36" rx="8" class="node"/>
+  <text x="200" y="172" text-anchor="middle" class="lbl s">Add + Normalize</text>
+  <line x1="200" y1="184" x2="200" y2="226" class="edge" marker-end="url(#ah-t1)"/>
+  <rect x="90" y="228" width="220" height="64" rx="8" class="node ffn"/>
+  <text x="200" y="256" text-anchor="middle" class="lbl b">Stage B</text>
+  <text x="200" y="280" text-anchor="middle" class="lbl s">one shared component</text>
+  <line x1="200" y1="292" x2="200" y2="324" class="edge" marker-end="url(#ah-t1)"/>
+  <rect x="90" y="326" width="220" height="36" rx="8" class="node"/>
+  <text x="200" y="350" text-anchor="middle" class="lbl s">Add + Normalize</text>
+  <line x1="200" y1="362" x2="200" y2="390" class="edge" marker-end="url(#ah-t1)"/>
+  <text x="200" y="412" text-anchor="middle" class="lbl">y</text>
+
+  <g class="fragment" data-fragment-index="1">
+    <text x="640" y="20" text-anchor="middle" class="lbl b">Modified</text>
+    <text x="640" y="46" text-anchor="middle" class="lbl">x</text>
+    <line x1="640" y1="52" x2="640" y2="80" class="edge" marker-end="url(#ah-t1)"/>
+    <rect x="530" y="82" width="220" height="44" rx="8" class="node"/>
+    <text x="640" y="110" text-anchor="middle" class="lbl">Stage A</text>
+    <line x1="640" y1="126" x2="640" y2="146" class="edge" marker-end="url(#ah-t1)"/>
+    <rect x="530" y="148" width="220" height="36" rx="8" class="node"/>
+    <text x="640" y="172" text-anchor="middle" class="lbl s">Add + Normalize</text>
+    <line x1="640" y1="184" x2="640" y2="214" class="edge" marker-end="url(#ah-t1)"/>
+    <rect x="440" y="204" width="400" height="104" rx="10" class="group"/>
+    <rect x="580" y="216" width="120" height="30" rx="6" class="node router"/>
+    <text x="640" y="237" text-anchor="middle" class="lbl s">Selector</text>
+    <text x="448" y="232" class="lbl s">New stage B</text>
+    <line x1="640" y1="246" x2="494" y2="264" class="edge off"/>
+    <line x1="640" y1="246" x2="591" y2="264" class="edge pick"/>
+    <line x1="640" y1="246" x2="688" y2="264" class="edge off"/>
+    <line x1="640" y1="246" x2="785" y2="264" class="edge off"/>
+    <rect x="452" y="266" width="85" height="34" rx="6" class="node off"/>
+    <text x="494" y="289" text-anchor="middle" class="lbl s">Copy 1</text>
+    <rect x="549" y="266" width="85" height="34" rx="6" class="node pick"/>
+    <text x="591" y="289" text-anchor="middle" class="lbl s b">Copy 2</text>
+    <rect x="646" y="266" width="85" height="34" rx="6" class="node off"/>
+    <text x="688" y="289" text-anchor="middle" class="lbl s">Copy 3</text>
+    <rect x="743" y="266" width="85" height="34" rx="6" class="node off"/>
+    <text x="785" y="289" text-anchor="middle" class="lbl s">Copy 4</text>
+    <line x1="591" y1="300" x2="636" y2="324" class="edge pick" marker-end="url(#ah-t1)"/>
+    <rect x="530" y="326" width="220" height="36" rx="8" class="node"/>
+    <text x="640" y="350" text-anchor="middle" class="lbl s">Add + Normalize</text>
+    <line x1="640" y1="362" x2="640" y2="390" class="edge" marker-end="url(#ah-t1)"/>
+    <text x="640" y="412" text-anchor="middle" class="lbl">y</text>
+  </g>
+</svg>
+      <p class="src">My drawing, after the paper's Figure N.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Layout: text + before/after block diagram. [~1 min] Show the baseline first.
+    [click] The modified block appears on the right. Keep labels identical where nothing changed.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">1 · Background</p>
+  <h2>The building block — Prior Author et al., Year</h2>
+  <div class="cols c64">
+    <div>
+      <ul>
+        <li>$N$ parts $E_1, \dots, E_N$ and a <b>selector</b> $W_r$.</li>
+        <li>The selector scores each part:
+          $$p_i(x) = \frac{e^{h(x)_i}}{\sum_{j=1}^{N} e^{h(x)_j}}, \qquad h(x) = W_r\, x$$</li>
+        <li>Keep the <b>top-$k$</b> parts and combine:
+          $$y = \sum_{i \in \mathcal{T}} p_i(x)\, E_i(x)$$</li>
+        <li>What prior work believed, in one line.</li>
+      </ul>
+      <p class="src">Equations as written in the paper (§2.1).</p>
+    </div>
+    <div>
+      <table>
+        <thead><tr><th>Variant</th><th class="num">Size</th><th class="num">Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Baseline</td><td class="num">1×</td><td class="num">1×</td></tr>
+          <tr><td>Prior method</td><td class="num">$N$×</td><td class="num">$k$×</td></tr>
+          <tr class="hl"><td>This paper</td><td class="num">$N$×</td><td class="num">1×</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted">Plus a small overhead: $O(d \times N)$.</p>
+      <div class="box small" style="margin-top: 0.8em;">
+        <b>Key property:</b> size grows with $N$, cost grows only with $k$.
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    Layout: definitions with formulas + comparison table. [~1.5 min] The table is the point; the formulas support it.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">1 · Problem</p>
+  <h2>Why was this not used before? Three barriers</h2>
+  <table style="font-size: 0.8em; width: 100%;">
+    <thead><tr><th>Barrier</th><th>What goes wrong</th><th>This paper's answer</th></tr></thead>
+    <tbody>
+      <tr><td><b>Barrier 1</b></td><td>the failure, concretely</td><td>the fix, concretely</td></tr>
+      <tr><td><b>Barrier 2</b></td><td>the failure, concretely</td><td>the fix, concretely</td></tr>
+      <tr><td><b>Barrier 3</b></td><td>the failure, concretely</td><td>the fix, concretely</td></tr>
+    </tbody>
+  </table>
+  <h3 style="margin-top: 0.8em;">Headline results</h3>
+  <ul class="small">
+    <li><b>7×</b> faster at equal cost</li>
+    <li>Gains on <b>all 101</b> cases tested</li>
+    <li>Scales to <b>1.6 trillion</b> parameters</li>
+  </ul>
+  <aside class="notes">
+    Layout: problem → answer table + headline numbers. [~1 min] Map each barrier to the section that fixes it.
+  </aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2 · METHOD                                                     -->
+<!-- ============================================================ -->
+
+<section>
+  <p class="kicker">2 · Method — the core idea</p>
+  <h2>Key idea: the step that changes ($k = 1$)</h2>
+<svg class="diagram" viewBox="0 0 1000 330" role="img" aria-label="One input is scored, one option is picked, and its output is scaled">
+  <defs>
+    <marker id="ah-t2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+  <rect x="10" y="130" width="140" height="70" rx="10" class="node"/>
+  <text x="80" y="160" text-anchor="middle" class="lbl">input x</text>
+  <text x="80" y="185" text-anchor="middle" class="lbl s">"example"</text>
+  <line x1="150" y1="165" x2="195" y2="165" class="edge" marker-end="url(#ah-t2)"/>
+  <rect x="197" y="130" width="120" height="70" rx="10" class="node router"/>
+  <text x="257" y="160" text-anchor="middle" class="lbl">Selector</text>
+  <text x="257" y="185" text-anchor="middle" class="lbl s">softmax(W x)</text>
+
+  <g class="fragment" data-fragment-index="1">
+    <line x1="317" y1="165" x2="338" y2="165" class="edge" marker-end="url(#ah-t2)"/>
+    <text x="345" y="83" class="lbl s">O1</text>
+    <rect x="380" y="60" width="26" height="34" fill="#4c78a8"/>
+    <text x="414" y="83" class="lbl s">0.10</text>
+    <text x="345" y="143" class="lbl s">O2</text>
+    <rect x="380" y="120" width="169" height="34" fill="#f58518"/>
+    <text x="557" y="143" class="lbl s b">0.65</text>
+    <text x="345" y="203" class="lbl s">O3</text>
+    <rect x="380" y="180" width="39" height="34" fill="#54a24b"/>
+    <text x="427" y="203" class="lbl s">0.15</text>
+    <text x="345" y="263" class="lbl s">O4</text>
+    <rect x="380" y="240" width="26" height="34" fill="#b279a2"/>
+    <text x="414" y="263" class="lbl s">0.10</text>
+    <text x="345" y="310" class="lbl s">scores p(x)</text>
+  </g>
+
+  <rect x="640" y="48" width="150" height="46" rx="8" class="node off"/>
+  <text x="715" y="77" text-anchor="middle" class="lbl s">Option 1</text>
+  <rect x="640" y="108" width="150" height="46" rx="8" class="node off"/>
+  <text x="715" y="137" text-anchor="middle" class="lbl s">Option 2</text>
+  <rect x="640" y="168" width="150" height="46" rx="8" class="node off"/>
+  <text x="715" y="197" text-anchor="middle" class="lbl s">Option 3</text>
+  <rect x="640" y="228" width="150" height="46" rx="8" class="node off"/>
+  <text x="715" y="257" text-anchor="middle" class="lbl s">Option 4</text>
+
+  <g class="fragment" data-fragment-index="2">
+    <line x1="600" y1="137" x2="638" y2="132" class="edge pick" marker-end="url(#ah-t2)"/>
+    <rect x="640" y="108" width="150" height="46" rx="8" class="node pick"/>
+    <text x="715" y="137" text-anchor="middle" class="lbl s b">Option 2 (argmax)</text>
+    <text x="715" y="300" text-anchor="middle" class="lbl s">Options 1, 3, 4: not computed</text>
+  </g>
+
+  <g class="fragment" data-fragment-index="3">
+    <line x1="790" y1="131" x2="813" y2="131" class="edge pick" marker-end="url(#ah-t2)"/>
+    <rect x="815" y="110" width="95" height="42" rx="8" class="node router"/>
+    <text x="862" y="137" text-anchor="middle" class="lbl s b">× 0.65</text>
+    <line x1="910" y1="131" x2="948" y2="131" class="edge" marker-end="url(#ah-t2)"/>
+    <text x="965" y="138" class="lbl b">y</text>
+  </g>
+</svg>
+  <div class="fragment box" data-fragment-index="3">
+    $$i^{*} = \arg\max_i\, p_i(x), \qquad y = p_{i^{*}}(x)\; E_{i^{*}}(x)$$
+  </div>
+  <aside class="notes">
+    Layout: step-by-step diagram with fragments. [~2 min] Walk one concrete input through the mechanism.
+    [click] Scores appear. [click] One option is picked. [click] The output is scaled; the formula appears last.
+    Reuse the same input and numbers on later slides.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — the core idea</p>
+  <h2>Why does it work? Old approach vs new approach</h2>
+  <p class="small" style="margin-bottom: 0.5em;">Both approaches share this part. The difference is <b>this one detail</b>.</p>
+  <div class="cols">
+    <div class="box warn" style="font-size: 0.9em;">
+      <h3>Prior work: order A</h3>
+      $$G(x) = \mathrm{Softmax}\big(\mathrm{KeepTopK}(H(x), k)\big)$$
+      <p class="small">What happens in the edge case, and why it fails. Hence the old limitation.</p>
+    </div>
+    <div class="box good" style="font-size: 0.9em;">
+      <h3>This paper: order B</h3>
+      $$p(x) = \mathrm{Softmax}(W x)\ \text{(all } N\text{)}, \text{ keep top-1}$$
+      <p class="small">What happens instead, and why it works.</p>
+    </div>
+  </div>
+  <table style="margin-top: 0.5em;">
+    <thead><tr><th>Same input, same setting</th><th>Value</th><th>Output</th><th>Works?</th></tr></thead>
+    <tbody>
+      <tr><td>Prior work (order A)</td><td class="num">1.00</td><td>$1.00 \cdot E(x)$</td><td class="lose">No</td></tr>
+      <tr class="hl"><td>This paper (order B)</td><td class="num">0.65</td><td>$0.65 \cdot E(x)$</td><td class="win">Yes</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted fragment" style="margin-top: 0.3em;"><b>Limit:</b> what the new approach still cannot do.</p>
+  <p class="src">Quote and equation: Prior Author (Year), §N. The comparison is my reading; the paper does not spell it out.</p>
+  <aside class="notes">
+    Layout: side-by-side contrast + example table. [~1.5 min] Use when the new work looks like the old one.
+    Name what both share, then show the single difference on the same example. Check the prior paper itself.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — the core idea</p>
+  <h2>Why this choice is better: three benefits (§N)</h2>
+  <ol>
+    <li><b>Benefit one.</b> What it saves, stated precisely.
+      <span class="muted">What it does not change, so nobody over-reads it.</span></li>
+    <li><b>Benefit two.</b> One sentence of cause and effect.</li>
+    <li><b>Benefit three.</b> One sentence of cause and effect.</li>
+  </ol>
+  <div class="box" style="margin-top: 0.9em;">
+    <p><b>The knob:</b> turn this up → get more of that. The cost stays fixed.</p>
+  </div>
+  <p class="small muted" style="margin-top: 0.6em;">A configuration detail worth knowing.</p>
+  <aside class="notes">
+    Layout: numbered reasons + summary box. [~1 min] Correct loose wording from the source here if needed.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — in numbers</p>
+  <h2>Size ≠ cost: the models in this paper</h2>
+  <table class="nowrap1" style="font-size: 0.85em;">
+    <thead><tr><th>Model</th><th class="num">Parameters</th><th class="num">FLOPs / sequence</th><th class="num">Parts</th></tr></thead>
+    <tbody>
+      <tr class="dim"><td>Baseline-Small</td><td class="num">0.2 B</td><td class="num">124 B</td><td class="num">—</td></tr>
+      <tr class="hl"><td>New-Small</td><td class="num">7 B</td><td class="num">124 B</td><td class="num">128</td></tr>
+      <tr class="dim"><td>Baseline-Large</td><td class="num">0.7 B</td><td class="num">425 B</td><td class="num">—</td></tr>
+      <tr class="hl"><td>New-Large</td><td class="num">26 B</td><td class="num">425 B</td><td class="num">128</td></tr>
+    </tbody>
+  </table>
+  <p class="small">New-Small has <b>~35×</b> the parameters of Baseline-Small at the <b>same</b> cost.</p>
+  <p class="src">Source: paper Table N.</p>
+  <aside class="notes">
+    Layout: data table with highlighted rows. [~1 min] Dim the baselines, highlight the new rows, and state the one comparison that matters.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — a mechanism, step by step</p>
+  <h2>How the mechanism fixes a bad case</h2>
+  <p class="small" style="margin-bottom: 0.4em;">Example: 4 items, and <b>everything</b> goes to Item 1.</p>
+  <div class="cols c46">
+<svg class="diagram" viewBox="0 0 500 340" role="img" aria-label="Item 1 is too high and is pushed down; the others are pushed up">
+  <defs>
+    <marker id="ah-t3-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d62728"/>
+    </marker>
+    <marker id="ah-t3-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1a7f37"/>
+    </marker>
+  </defs>
+  <text x="250" y="18" text-anchor="middle" class="lbl s b">Value per item</text>
+  <line x1="30" y1="270" x2="480" y2="270" class="edge"/>
+  <rect x="60" y="95" width="80" height="175" fill="#4c78a8"/>
+  <text x="100" y="125" text-anchor="middle" class="lbl b" style="fill: #fff;">0.70</text>
+  <rect x="170" y="245" width="80" height="25" fill="#f58518"/>
+  <text x="210" y="238" text-anchor="middle" class="lbl">0.10</text>
+  <rect x="280" y="245" width="80" height="25" fill="#54a24b"/>
+  <text x="320" y="238" text-anchor="middle" class="lbl">0.10</text>
+  <rect x="390" y="245" width="80" height="25" fill="#b279a2"/>
+  <text x="430" y="238" text-anchor="middle" class="lbl">0.10</text>
+  <g class="fragment" data-fragment-index="2">
+    <line x1="100" y1="34" x2="100" y2="86" stroke="#d62728" stroke-width="5" marker-end="url(#ah-t3-red)"/>
+    <text x="116" y="66" class="lbl s b" style="fill: #d62728;">push down</text>
+    <line x1="210" y1="220" x2="210" y2="170" stroke="#1a7f37" stroke-width="5" marker-end="url(#ah-t3-green)"/>
+    <line x1="320" y1="220" x2="320" y2="170" stroke="#1a7f37" stroke-width="5" marker-end="url(#ah-t3-green)"/>
+    <line x1="430" y1="220" x2="430" y2="170" stroke="#1a7f37" stroke-width="5" marker-end="url(#ah-t3-green)"/>
+    <text x="320" y="158" text-anchor="middle" class="lbl s b" style="fill: #1a7f37;">push up</text>
+  </g>
+  <text x="100" y="296" text-anchor="middle" class="lbl s">Item 1</text>
+  <text x="210" y="296" text-anchor="middle" class="lbl s">Item 2</text>
+  <text x="320" y="296" text-anchor="middle" class="lbl s">Item 3</text>
+  <text x="430" y="296" text-anchor="middle" class="lbl s">Item 4</text>
+  <text x="100" y="326" text-anchor="middle" class="lbl s b" style="fill: #d62728;">share = 1</text>
+  <text x="210" y="326" text-anchor="middle" class="lbl s">share = 0</text>
+  <text x="320" y="326" text-anchor="middle" class="lbl s">share = 0</text>
+  <text x="430" y="326" text-anchor="middle" class="lbl s">share = 0</text>
+</svg>
+    <div>
+      <div class="box small">
+        <b>1. Measure</b> two things per item:<br/>
+        $f$ = what it <b>actually gets</b> (a count)<br/>
+        $P$ = its <b>average score</b>
+      </div>
+      <div class="box small fragment" data-fragment-index="1" style="margin-top: 0.45em;">
+        <b>2. Score</b> $= N \sum_i f_i P_i$<br/>
+        Here: $4 \times (\underbrace{1 \times 0.70}_{\text{1}} + \underbrace{0 \times 0.10}_{\text{2}} + \underbrace{0 \times 0.10}_{\text{3}} + \underbrace{0 \times 0.10}_{\text{4}}) = $ <b class="red">2.8</b><br/>
+        Balanced: $4 \times (4 \times 0.25 \times 0.25) = $ <b>1.0</b> (the lowest).
+      </div>
+      <div class="box good small fragment" data-fragment-index="2" style="margin-top: 0.45em;">
+        <b>3. Fix:</b> a count cannot be trained, so training changes $P$:
+        down for crowded items, up for idle ones.
+      </div>
+    </div>
+  </div>
+  <p class="small muted fragment" data-fragment-index="3" style="margin-top: 0.3em;"><b>Why not use $P$ alone?</b> The pitfall it avoids, in one line.</p>
+  <aside class="notes">
+    Layout: step story (Measure → Score → Fix) + bar chart. [~1.5 min] Use instead of a gradient derivation.
+    Write every term of a sum, including zeros. Put the formal derivative here in the notes for Q&A. Mark the example as your own.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — making it work</p>
+  <h2>Engineering trick: where each step runs</h2>
+  <div class="cols c46">
+    <div>
+      <ul class="small">
+        <li><b>The problem:</b> why the fast default breaks here.</li>
+        <li><b>Fix:</b> only one small step uses the safe, slow setting. It runs <b>locally</b>.</li>
+        <li>Everything that crosses devices stays in the fast setting: <b>half the bytes</b>.</li>
+      </ul>
+    </div>
+    <div>
+      <table>
+        <thead><tr><th>Setting</th><th class="num">Quality ↑</th><th class="num">Speed ↑</th></tr></thead>
+        <tbody>
+          <tr><td>Safe everywhere</td><td class="num">−1.718</td><td class="num">1160</td></tr>
+          <tr><td>Fast everywhere</td><td class="num lose">−3.780 (diverged)</td><td class="num">1390</td></tr>
+          <tr class="hl"><td>Selective</td><td class="num">−1.716</td><td class="num">1390</td></tr>
+        </tbody>
+      </table>
+      <p class="src">Table N.</p>
+    </div>
+  </div>
+<svg class="diagram" viewBox="0 0 1200 150" role="img" aria-label="Pipeline with a local high-precision stage and a communication step" style="margin-top: 0.4em;">
+  <defs>
+    <marker id="ah-t4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+  <rect x="8" y="28" width="784" height="114" rx="10" class="group"/>
+  <text x="14" y="20" class="lbl s b">One device: all local, no communication</text>
+  <rect x="190" y="40" width="404" height="92" rx="8" fill="#fff6ec" stroke="#f58518" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="440" y="20" class="lbl s b" style="fill: #c45f00;">safe setting: this stage only</text>
+  <rect x="20" y="62" width="150" height="56" rx="8" class="node"/>
+  <text x="95" y="86" text-anchor="middle" class="lbl s">input</text>
+  <text x="95" y="108" text-anchor="middle" class="lbl s b">fast</text>
+  <line x1="170" y1="90" x2="198" y2="90" class="edge" marker-end="url(#ah-t4)"/>
+  <rect x="200" y="62" width="112" height="56" rx="8" class="node router"/>
+  <text x="256" y="86" text-anchor="middle" class="lbl s">convert to</text>
+  <text x="256" y="108" text-anchor="middle" class="lbl s b">safe</text>
+  <line x1="312" y1="90" x2="328" y2="90" class="edge" marker-end="url(#ah-t4)"/>
+  <rect x="330" y="62" width="130" height="56" rx="8" class="node router"/>
+  <text x="395" y="86" text-anchor="middle" class="lbl s">sensitive</text>
+  <text x="395" y="108" text-anchor="middle" class="lbl s">step</text>
+  <line x1="460" y1="90" x2="476" y2="90" class="edge" marker-end="url(#ah-t4)"/>
+  <rect x="478" y="62" width="108" height="56" rx="8" class="node router"/>
+  <text x="532" y="86" text-anchor="middle" class="lbl s">convert to</text>
+  <text x="532" y="108" text-anchor="middle" class="lbl s b">fast</text>
+  <line x1="594" y1="90" x2="610" y2="90" class="edge" marker-end="url(#ah-t4)"/>
+  <rect x="612" y="62" width="168" height="56" rx="8" class="node"/>
+  <text x="696" y="86" text-anchor="middle" class="lbl s">prepare output</text>
+  <text x="696" y="108" text-anchor="middle" class="lbl s b">fast</text>
+  <line x1="780" y1="90" x2="818" y2="90" class="edge" marker-end="url(#ah-t4)"/>
+  <rect x="820" y="62" width="170" height="56" rx="8" class="node ffn"/>
+  <text x="905" y="86" text-anchor="middle" class="lbl s">send</text>
+  <text x="905" y="108" text-anchor="middle" class="lbl s b">fast (2 bytes)</text>
+  <line x1="990" y1="90" x2="1018" y2="90" class="edge" marker-end="url(#ah-t4)"/>
+  <rect x="1020" y="62" width="170" height="56" rx="8" class="node ffn"/>
+  <text x="1105" y="86" text-anchor="middle" class="lbl s">main compute</text>
+  <text x="1105" y="108" text-anchor="middle" class="lbl s b">fast</text>
+  <text x="905" y="20" text-anchor="middle" class="lbl s b">communication</text>
+</svg>
+  <p class="src">My diagram, based on §N.</p>
+  <aside class="notes">
+    Layout: text + table + full-width flow diagram. [~1.5 min] Show what runs where, in what precision, and what crosses devices.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — putting it together</p>
+  <h2>New vs prior vs baseline: Table N</h2>
+  <table>
+    <thead><tr><th>Model</th><th class="num">Setting</th><th class="num">Quality ↑</th><th class="num">Hours to target ↓</th><th class="num">Examples / s ↑</th></tr></thead>
+    <tbody>
+      <tr class="dim"><td>Baseline</td><td class="num">—</td><td class="num">−1.731</td><td class="num">not reached</td><td class="num">1600</td></tr>
+      <tr><td>Prior method</td><td class="num">2.0</td><td class="num">−1.547</td><td class="num">68.7</td><td class="num">840</td></tr>
+      <tr><td>New method</td><td class="num">2.0</td><td class="num">−1.554</td><td class="num">72.8</td><td class="num">860</td></tr>
+      <tr class="hl"><td>New method</td><td class="num">1.0</td><td class="num">−1.561</td><td class="num">62.8</td><td class="num">1000</td></tr>
+    </tbody>
+  </table>
+  <p class="small"><b>Metric</b> definition and direction. The one-sentence finding, including where the new method does <i>not</i> win.</p>
+  <aside class="notes">
+    Layout: results table. [~1.5 min] Say which direction is better, then the finding, then the honest exception.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — making it work</p>
+  <h2>Two smaller tricks</h2>
+  <div class="cols">
+    <div>
+      <h3>Trick A</h3>
+      <p class="small">What it changes, with the exact setting (1.0 → <b>0.1</b>).</p>
+      <table>
+        <thead><tr><th>Setting</th><th class="num">Avg quality</th><th class="num">Std. dev.</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>New</td><td class="num">−2.72</td><td class="num">0.01</td></tr>
+          <tr><td>Default</td><td class="num">−3.60</td><td class="num lose">0.68</td></tr>
+        </tbody>
+      </table>
+      <p class="src">Table N. Setup in one line.</p>
+    </div>
+    <div>
+      <h3>Trick B</h3>
+      <p class="small">What problem it solves. The setting: <b>0.1</b> here, <b>0.4</b> there.</p>
+      <table>
+        <thead><tr><th>Setting</th><th class="num">Task 1</th><th class="num">Task 2</th></tr></thead>
+        <tbody>
+          <tr class="dim"><td>Baseline</td><td class="num">82.9</td><td class="num">72.4</td></tr>
+          <tr><td>Uniform</td><td class="num">84.7</td><td class="num">73.0</td></tr>
+          <tr class="hl"><td>Targeted</td><td class="num">85.2</td><td class="num">73.0</td></tr>
+        </tbody>
+      </table>
+      <p class="src">Excerpt of Table N.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Layout: two titled tables side by side. [~1.5 min] Define any setting people confuse (for example, dropout 0.1 drops 10%).
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">2 · Method — summary</p>
+  <h2>The recipe on one slide</h2>
+  <div class="cols">
+    <div class="box">
+      <h3>Architecture</h3>
+      <ul class="small">
+        <li>Component change</li>
+        <li>Selection rule</li>
+        <li>Output rule; what happens on overflow</li>
+        <li>Key setting ≈ value</li>
+      </ul>
+    </div>
+    <div class="box good">
+      <h3>Training</h3>
+      <ul class="small">
+        <li>Auxiliary loss, coefficient</li>
+        <li>Precision rule</li>
+        <li>Initialization</li>
+        <li>Fine-tuning regularization</li>
+      </ul>
+    </div>
+  </div>
+  <p class="big center" style="margin-top: 0.8em;">Turn this up ⇒ get that, <b>at the same cost</b>.</p>
+  <aside class="notes">
+    Layout: recipe card. [~30 s] Close the method section. Nothing new here.
+  </aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3 · EVIDENCE                                                  -->
+<!-- ============================================================ -->
+
+<section>
+  <p class="kicker">3 · Experiments — headline result</p>
+  <h2>More X → better, at the same cost</h2>
+  <div class="fig-wide" style="--fig-h: 360px;">
+    <div class="figph" data-src="figures/figN-wide.png" data-caption="Figure N, Author et al. (Year), LICENSE" data-alt="Figure N: what it shows">
+      <b>Paste paper Figure N</b> (page P, both panels)
+      <span>save as <code>figures/figN-wide.png</code></span>
+    </div>
+  </div>
+  <div class="cols c64" style="margin-top: 0.3em;">
+    <ul class="small">
+      <li><b>Left:</b> what varies, what stays fixed, and the trend.</li>
+      <li><b>Right:</b> the one comparison, with the numbers read off the plot.</li>
+    </ul>
+    <div class="box good"><p class="big center"><b>7.5×</b> speed-up <span class="small">per step</span></p></div>
+  </div>
+  <aside class="notes">
+    Layout: wide figure + bullets + highlight number. [~1.5 min] Explain the axes before the result.
+    Crop with scripts/crop_figure.py; the placeholder becomes the image once the file exists.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">3 · Experiments — a second view</p>
+  <h2>Does it hold in wall-clock time? Yes.</h2>
+  <div class="cols">
+    <div class="figph" data-src="figures/figA.png" data-caption="Figure A, Author et al. (Year), LICENSE" data-alt="Figure A">
+      <b>Paste paper Figure A</b> (page P)
+      <span>save as <code>figures/figA.png</code></span>
+    </div>
+    <div class="figph" data-src="figures/figB.png" data-caption="Figure B (right panel), Author et al. (Year), LICENSE" data-alt="Figure B">
+      <b>Paste paper Figure B, right panel</b> (page P)
+      <span>save as <code>figures/figB.png</code></span>
+    </div>
+  </div>
+  <div class="cols" style="margin-top: 0.4em;">
+    <p class="small center"><b>7×</b> faster than <b>baseline A</b> (same cost)</p>
+    <p class="small center"><b>2.5×</b> faster than <b>baseline B</b>, which uses <b>3.5×</b> more compute</p>
+  </div>
+  <aside class="notes">
+    Layout: two figures side by side with one takeaway each. [~1.5 min]
+  </aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4 · DISCUSSION                                                -->
+<!-- ============================================================ -->
+
+<section>
+  <p class="kicker">4 · Discussion — back to the hypothesis</p>
+  <h2>Does the central claim hold?</h2>
+  <div class="cols">
+    <div>
+      <table class="nowrap1">
+        <thead><tr><th>Model</th><th class="num">Size</th><th class="num">Cost</th><th class="num">Quality ↑</th></tr></thead>
+        <tbody>
+          <tr class="dim"><td>Baseline-L</td><td class="num">0.7B</td><td class="num">425B</td><td class="num">−1.350</td></tr>
+          <tr><td>New-S</td><td class="num">7B</td><td class="num">124B</td><td class="num win">−1.306</td></tr>
+          <tr class="dim"><td>Baseline-XL</td><td class="num">11B</td><td class="num">6.3T</td><td class="num">−1.095</td></tr>
+          <tr><td>New-L</td><td class="num">26B</td><td class="num">425B</td><td class="num lose">−1.177</td></tr>
+        </tbody>
+      </table>
+      <p class="src">Table N. Green / red: better / worse than the baseline above it.</p>
+    </div>
+    <div>
+      <div class="box good small"><b>Yes:</b> the evidence that supports the claim.</div>
+      <div class="box bad small" style="margin-top: 0.5em;"><b>But not fully:</b> the evidence that limits it.</div>
+      <div class="box small" style="margin-top: 0.5em;"><b>So:</b> the refined conclusion.</div>
+    </div>
+  </div>
+  <p class="src">My reading of Table N.</p>
+  <aside class="notes">
+    Layout: claim check. [~1.5 min] Return to the hypothesis from the background section and test it with the source's own numbers. Mark it as your reading.
+  </aside>
+</section>
+
+<section>
+  <p class="kicker">4 · Takeaways</p>
+  <h2>Takeaways</h2>
+  <ol>
+    <li><b>Core idea.</b> One sentence.</li>
+    <li><b>Design lesson.</b> One sentence.</li>
+    <li><b>What made it work.</b> One sentence.</li>
+    <li><b>Size of the gains.</b> The headline numbers.</li>
+    <li><b>Open issues.</b> What is still unsolved.</li>
+  </ol>
+  <aside class="notes">Layout: numbered takeaways. [~1 min]</aside>
+</section>
+
+<section>
+  <p class="kicker">4 · Discussion — my assessment</p>
+  <h2>Strengths and limitations</h2>
+  <div class="cols">
+    <div class="box good">
+      <h3>Strengths</h3>
+      <ul class="small">
+        <li>Strength with evidence</li>
+        <li>Strength with evidence</li>
+        <li>Strength with evidence</li>
+      </ul>
+    </div>
+    <div class="box bad">
+      <h3>Limitations</h3>
+      <ul class="small">
+        <li><b>Limitation:</b> why it matters</li>
+        <li><b>Limitation:</b> why it matters</li>
+        <li><b>Limitation:</b> why it matters</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">Layout: strengths vs limitations. [~1.5 min] Your own assessment; say so.</aside>
+</section>
+
+<section>
+  <p class="kicker">4 · Discussion</p>
+  <h2>Questions for discussion</h2>
+  <ol>
+    <li>A question about the core mechanism: why is it enough, and when might it fail?</li>
+    <li>A question about a design trade-off.</li>
+    <li>A question that connects to prior or later work.</li>
+    <li>When would you <b>not</b> use this approach?</li>
+  </ol>
+  <aside class="notes">Layout: discussion questions. [~2 min, or during Q&amp;A] Keep a hint for each in the notes.</aside>
+</section>
+
+<section>
+  <p class="kicker">Thank you</p>
+  <h2>Questions?</h2>
+  <div class="box big" style="margin-top: 1em;">
+    The one-sentence summary again.
+  </div>
+  <p class="small muted" style="margin-top: 1.2em;">
+    Authors. <i>Title.</i> Venue, Year. Code: link
+  </p>
+  <aside class="notes">Layout: closing. Repeat the one sentence. List the backup slides here.</aside>
+</section>
+
+<!-- ============================================================ -->
+<!-- BACKUP                                                         -->
+<!-- ============================================================ -->
+
+<section>
+  <p class="kicker">Backup <span class="backup-tag">Q&amp;A</span></p>
+  <h2>The mechanism in code</h2>
+  <pre><code class="language-python">import numpy as np
+
+def softmax(z):
+    z = np.exp(z - z.max(-1, keepdims=True))   # subtract max for stability
+    return z / z.sum(-1, keepdims=True)
+
+def select(x, W):
+    """x: [T, d] inputs. W: [d, N] selector weights."""
+    probs = softmax(x @ W)                      # [T, N]
+    choice = probs.argmax(-1)                   # top-1 per input
+    gate = probs[np.arange(len(x)), choice]     # its probability
+    return choice, gate</code></pre>
+  <p class="src">My simplified version of the paper's code (Figure N). Run it before showing it.</p>
+  <aside class="notes">Layout: code. Keep it short and runnable; explain the one non-obvious line.</aside>
+</section>
+
+<section>
+  <p class="kicker">Backup <span class="backup-tag">beyond the paper</span></p>
+  <h2>Context: what came after</h2>
+  <ul>
+    <li><b>Later work A</b> (Author, Year): what it changed.</li>
+    <li><b>Later work B</b> (Author, Year): what it changed.</li>
+    <li><b>Later work C</b> (Author, Year): what it changed.</li>
+  </ul>
+  <p class="small muted">Not from the paper. Shows where the idea went.</p>
+  <aside class="notes">Layout: related work list. Use only if asked.</aside>
+</section>
+
+</div>
+</div>
+
+<script src="node_modules/reveal.js/dist/reveal.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/notes.js"></script>
+<script src="node_modules/reveal.js/dist/plugin/math.js"></script>
+<script src="js/figures.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    center: false,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    katex: { local: 'node_modules/katex' },
+    plugins: [RevealMath.KaTeX, RevealNotes],
+  });
+</script>
+</body>
+</html>

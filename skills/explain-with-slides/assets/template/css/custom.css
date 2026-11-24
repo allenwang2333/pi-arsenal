@@ -1,0 +1,150 @@
+/* Deck styles on top of the reveal.js "white" theme. */
+:root {
+  --r-main-font-size: 27px;
+  --r-main-color: #1f2328;
+  --r-heading-color: #12324f;
+  --r-heading-text-transform: none;
+  --r-heading-font-weight: 700;
+  --r-link-color: #2a6fb0;
+  --e1: #4c78a8;
+  --e2: #f58518;
+  --e3: #54a24b;
+  --e4: #b279a2;
+  --drop: #d62728;
+  --muted: #6a737d;
+  --accent: #2a6fb0;
+  --soft: #f3f6fa;
+}
+
+.reveal .slides section { text-align: left; }
+.reveal h1 { font-size: 1.75em; line-height: 1.15; }
+.reveal h2 { font-size: 1.45em; margin-bottom: 0.45em; }
+.reveal h3 { font-size: 1.05em; color: var(--accent); }
+.reveal p, .reveal li { line-height: 1.35; }
+.reveal ul, .reveal ol { display: block; margin-left: 1.1em; }
+.reveal li { margin: 0.22em 0; }
+.reveal li li { font-size: 0.9em; }
+
+/* Section label above each slide title. */
+.reveal .kicker {
+  margin: 0 0 0.1em;
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.reveal .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; align-items: start; }
+.reveal .cols.c64 { grid-template-columns: 1.5fr 1fr; }
+.reveal .cols.c46 { grid-template-columns: 1fr 1.5fr; }
+.reveal .cols.c3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.reveal .box {
+  padding: 0.55em 0.8em;
+  border-radius: 10px;
+  background: var(--soft);
+  border-left: 6px solid var(--accent);
+}
+.reveal .box.warn { border-left-color: var(--e2); background: #fff6ec; }
+.reveal .box.good { border-left-color: var(--e3); background: #f1f8ef; }
+.reveal .box.bad { border-left-color: var(--drop); background: #fdf0f0; }
+.reveal .box > :first-child { margin-top: 0; }
+.reveal .box > :last-child { margin-bottom: 0; }
+
+.reveal .big { font-size: 1.3em; line-height: 1.3; }
+.reveal .small { font-size: 0.85em; }
+.reveal .tiny { font-size: 0.6em; }
+.reveal .muted { color: var(--muted); }
+.reveal .center { text-align: center; }
+.reveal .red { color: var(--drop); }
+.reveal .src { font-size: 0.6em; color: var(--muted); margin-top: 0.6em; }
+
+.reveal table { font-size: 0.85em; border-collapse: collapse; margin: 0.3em 0; }
+.reveal table th, .reveal table td { padding: 0.25em 0.6em; border-bottom: 1px solid #d0d7de; }
+.reveal table th { background: #eef2f6; text-align: left; }
+.reveal table td.num, .reveal table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.reveal table tr.hl td { background: #fff2cc; font-weight: 700; }
+.reveal table tr.dim td { color: var(--muted); }
+.reveal table td.win { color: #1a7f37; font-weight: 700; }
+.reveal table td.lose { color: var(--drop); font-weight: 700; }
+
+.reveal .katex-display { margin: 0.35em 0; }
+
+.reveal pre { width: 100%; font-size: 0.55em; box-shadow: none; }
+.reveal pre code { max-height: 560px; padding: 0.6em 0.8em; background: #f6f8fa; color: #1f2328; border-radius: 8px; }
+
+/* Paper figure placeholder. js/figures.js swaps in the image when the file exists. */
+.reveal .figph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 260px;
+  padding: 0.6em;
+  border: 3px dashed #9aa5b1;
+  border-radius: 12px;
+  background: repeating-linear-gradient(45deg, #fafbfc, #fafbfc 12px, #f2f4f7 12px, #f2f4f7 24px);
+  color: var(--muted);
+  font-size: 0.7em;
+  text-align: center;
+}
+.reveal .figph b { color: var(--r-main-color); }
+.reveal .figph code { font-size: 0.9em; }
+.reveal img.paperfig { display: block; max-width: 100%; max-height: 430px; margin: 0 auto; }
+
+/* Hand-drawn SVG diagrams. */
+.reveal svg.diagram { display: block; width: 100%; height: auto; margin: 0 auto; }
+.reveal svg.diagram text { font-family: "Source Sans Pro", Helvetica, Arial, sans-serif; fill: #1f2328; }
+.reveal svg.diagram .lbl { font-size: 20px; }
+.reveal svg.diagram .lbl.s { font-size: 16px; fill: #555; }
+.reveal svg.diagram .b { font-weight: 700; }
+.reveal svg.diagram .red { fill: var(--drop); }
+.reveal svg.diagram .node { fill: #fff; stroke: #57606a; stroke-width: 2; }
+.reveal svg.diagram .node.ffn { fill: #e8eef6; }
+.reveal svg.diagram .node.router { fill: #fff2cc; stroke: #b08800; }
+.reveal svg.diagram .node.off { fill: #f3f4f6; stroke: #c4c9cf; }
+.reveal svg.diagram .node.pick { fill: #fde3c8; stroke: var(--e2); stroke-width: 3; }
+.reveal svg.diagram .edge { stroke: #57606a; stroke-width: 2; fill: none; }
+.reveal svg.diagram .edge.off { stroke: #c4c9cf; stroke-dasharray: 5 5; }
+.reveal svg.diagram .edge.pick { stroke: var(--e2); stroke-width: 3.5; }
+.reveal svg.diagram .group { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 8 6; }
+.reveal svg.diagram .empty { fill: #fff; stroke: #9aa5b1; stroke-width: 1.5; stroke-dasharray: 4 3; }
+.reveal svg.diagram .dropped { stroke: var(--drop); stroke-width: 3; stroke-dasharray: 5 3; opacity: 0.55; }
+.reveal svg.diagram .capline { stroke: #1f2328; stroke-width: 3; }
+.reveal svg.diagram .dev { fill: #f6f8fa; stroke: #8c959f; stroke-width: 1.5; }
+.reveal svg.diagram .a2a { stroke-width: 2; opacity: 0.55; }
+.reveal svg.diagram .arrowpath { fill: none; stroke: #57606a; stroke-width: 2.5; marker-end: url(#arrowhead-par); }
+
+/* Title slide */
+.reveal .title-slide h1 { margin-top: 1.2em; }
+.reveal .title-slide .authors { font-size: 0.95em; }
+.reveal .presenter { margin-top: 1.4em; font-size: 0.85em; color: var(--muted); }
+.reveal .backup-tag {
+  display: inline-block;
+  padding: 0.05em 0.5em;
+  border-radius: 6px;
+  background: #eef2f6;
+  color: var(--muted);
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.reveal figure.paperfig-wrap { margin: 0; }
+.reveal figure.paperfig-wrap figcaption { margin-top: 0.3em; text-align: center; }
+/* Wide figures span the slide; --fig-h caps their height. */
+.reveal .fig-wide img.paperfig { max-height: var(--fig-h, 330px); }
+.reveal .fig-wide .figph { min-height: var(--fig-h, 330px); }
+
+/* Small horizontal timeline. */
+.reveal .timeline { display: flex; gap: 0.5em; margin: 0.2em 0 0.7em; font-size: 0.6em; }
+.reveal .timeline > div {
+  flex: 1;
+  padding: 0.35em 0.6em;
+  border-top: 5px solid #9aa5b1;
+  background: #f6f8fa;
+  line-height: 1.3;
+}
+.reveal .timeline > div.now { border-top-color: var(--e2); background: #fff6ec; }
+.reveal .timeline > div.later { color: var(--muted); border-top-style: dashed; }
+.reveal table.nowrap1 td:first-child { white-space: nowrap; }

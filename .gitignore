@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+__pycache__/
+.pytest_cache/
+.pi/
+.env
+.env.*
+auth.json
+mcp-auth.json
+settings.json
+models.json
+mcp.json
+sol-pi.json
+dynamic-workflow.json
+sessions/
+memory/

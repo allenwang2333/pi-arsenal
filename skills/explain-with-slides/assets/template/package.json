@@ -1,0 +1,12 @@
+{
+  "name": "slides",
+  "private": true,
+  "description": "reveal.js explanation deck",
+  "scripts": {
+    "start": "npx --yes serve -l 8000 ."
+  },
+  "dependencies": {
+    "katex": "^0.19.0",
+    "reveal.js": "^6.0.2"
+  }
+}
