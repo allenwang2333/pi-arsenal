@@ -5,18 +5,10 @@ It does not supply provider settings, credentials, or a global prompt.
 
 ## Install
 
-This release was tested with Pi 1.5.2. Try it for one session:
+This release was tested with Pi 1.5.2.
 
-```sh
-pi -ne -e git:github.com/allenwang2333/pi-arsenal@v0.1.0
-```
-
-`-ne` skips your usual extensions for this run, including the built-in MCP
-extension, so another extension cannot register the same tools. The trial
-does not change your saved settings.
-
-To keep the package enabled, first disable any extensions that also
-register `edit` or `background-process`, then run:
+Before installing, disable any extensions that also register `edit` or
+`background-process`, then run:
 
 ```sh
 pi install git:github.com/allenwang2333/pi-arsenal@v0.1.0
