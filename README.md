@@ -11,7 +11,7 @@ Before installing, disable any extensions that also register `edit` or
 `background-process`, then run:
 
 ```sh
-pi install git:github.com/allenwang2333/pi-arsenal@v0.1.0
+pi install git:github.com/allenwang2333/pi-arsenal@v0.1.1
 ```
 
 The package replaces Pi's built-in `edit` tool and changes parts of the
@@ -39,7 +39,8 @@ npm test
 ```
 
 These tests do not need local Pi settings or provider credentials.
-See [CHANGELOG.md](CHANGELOG.md) for version notes.
+See [AGENTS.md](AGENTS.md) for repository coding guidance and
+[CHANGELOG.md](CHANGELOG.md) for version notes.
 
 ## License
 
